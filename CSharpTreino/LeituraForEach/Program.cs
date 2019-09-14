@@ -10,6 +10,13 @@ namespace LeituraForEach
     {
         static void Main(string[] args)
         {
+            LeituraEscrita();
+        }
+        /// <summary>
+        /// Este método faz a leituras de quatro nomes e depois os retorna.
+        /// </summary>
+        private static void LeituraEscrita()
+        {
             string[] nome = new string[4];
 
             for (int i = 0; i < 4; i++)
@@ -25,6 +32,5 @@ namespace LeituraForEach
             }
             Console.ReadKey();
         }
-
     }
 }
