@@ -8,7 +8,7 @@ namespace FormularioCadastroAluno
 {
     public class Dados
     {
-        public int I1 = 14;
+        public int i1 = 14;
         public int I2 = 15;
         public int I3 = 16;
         public int I4 = 17;

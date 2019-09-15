@@ -12,7 +12,7 @@ namespace FormularioCadastroAluno
 {
     public partial class Form1 : Form
     {
-        Dados dado;
+        public Dados dado;
         public Form1()
         {
             InitializeComponent();
@@ -20,7 +20,7 @@ namespace FormularioCadastroAluno
 
         private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            comboBox1.Items.Add(Convert.ToString(dado.I1));
+            comboBox1.Items.Add(Convert.ToString(dado.i1));
             comboBox1.Items.Add(15);
             comboBox1.Items.Add(16);
             comboBox1.Items.Add(17);
