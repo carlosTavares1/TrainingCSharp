@@ -14,7 +14,7 @@ namespace FormularioCadastroAluno
         
         public int PegaIdade(int indice)
         {
-            switch (idade)
+            switch (indice)
             {
                 case 0:
                     this.idade = 14;
