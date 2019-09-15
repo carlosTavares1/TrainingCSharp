@@ -20,7 +20,16 @@ namespace FormularioCadastroAluno
 
         private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            comboBox1.Items.Add(Convert.ToString(dado.i1));
+            //Informo o comando para recuperar a informação selecionada
+            int indice = comboBox1.SelectedIndex;
+            dado.idade = dado.PegaIdade(indice);
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            this.dado = new Dados();
+
+            comboBox1.Items.Add(14);
             comboBox1.Items.Add(15);
             comboBox1.Items.Add(16);
             comboBox1.Items.Add(17);
@@ -40,9 +49,19 @@ namespace FormularioCadastroAluno
             comboBox1.Items.Add(31);
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void TextBox1_TextChanged(object sender, EventArgs e)
         {
-            this.dado = new Dados();
+            dado.Nome = txtNome.Text;
+        }
+
+        private void TxtEndereco_TextChanged(object sender, EventArgs e)
+        {
+            dado.Endereco = txtEndereco.Text;
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show($"O nome é {dado.Nome}\r\nO endereço é {dado.Endereco}\r\nA idade é {dado.idade}");
         }
     }
 }
