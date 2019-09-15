@@ -20,6 +20,9 @@ namespace Calculadora
         public int b8 = 8;
         public int b9 = 9;
 
+        /// <summary>
+        /// Este método realiza a soma dos valores digitados
+        /// </summary>
         public void Soma()
         {
             switch (resultado)
