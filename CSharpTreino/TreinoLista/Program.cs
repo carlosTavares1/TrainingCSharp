@@ -15,6 +15,7 @@ namespace TreinoLista
             conjuntoOrdenado.Add("Marcos");
             conjuntoOrdenado.Add("Gabriel");
             conjuntoOrdenado.Add("Carlos");
+            conjuntoOrdenado.Add("Davi");
 
             foreach (var item in conjuntoOrdenado)
             {
