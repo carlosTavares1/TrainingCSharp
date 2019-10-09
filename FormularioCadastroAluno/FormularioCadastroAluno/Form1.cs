@@ -12,7 +12,7 @@ namespace FormularioCadastroAluno
 {
     public partial class Form1 : Form
     {
-        public Dados dado;
+        public List<Dados> lista;
         public Form1()
         {
             InitializeComponent();
@@ -27,7 +27,8 @@ namespace FormularioCadastroAluno
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.dado = new Dados();
+
+            lista = new List<Dados>();
 
             comboBox1.Items.Add(14);
             comboBox1.Items.Add(15);
@@ -51,7 +52,8 @@ namespace FormularioCadastroAluno
 
         private void TextBox1_TextChanged(object sender, EventArgs e)
         {
-            dado.Nome = txtNome.Text;
+             var nome = txtNome.Text;
+            lista.Add(nome);
         }
 
         private void TxtEndereco_TextChanged(object sender, EventArgs e)
@@ -61,7 +63,7 @@ namespace FormularioCadastroAluno
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show($"O nome é {dado.Nome}\r\nO endereço é {dado.Endereco}\r\nA idade é {dado.idade}");
+            MessageBox.Show($"O nome é {lista.Nome}\r\nO endereço é {dado.Endereco}\r\nA idade é {dado.idade}");
         }
 
         private void RadioButton1_CheckedChanged(object sender, EventArgs e)
