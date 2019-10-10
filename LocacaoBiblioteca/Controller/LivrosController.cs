@@ -12,44 +12,69 @@ namespace LocacaoBiblioteca.Controller
     /// </summary>
     public class LivrosController
     {
-        private LocacaoContext contextDB = new LocacaoContext();
+        ContextDB contextDB = new ContextDB();
         /// <summary>
-        /// Metodo construtor que prepara o terreo para já iniciar com livros pré cadastrados
+        /// Este método faz a busca de todos os registros que estão ativos
         /// </summary>
-        public LivrosController()
+        /// <returns>Este retorna os registro que estão ativos na base</returns>
+        public IQueryable<Livro> GetLivros()
         {
+            return contextDB.Livros.Where(x => x.Ativo == true);
+        }
+        /// <summary>
+        /// Este método atualiza um registro com base em um id
+        /// </summary>
+        /// <param name="item">Este método recebe como parâmetro um objeto do tipo livro</param>
+        /// <returns>Retorna verdadeiro caso o id exista na base de dados</returns>
+        public bool AtualizarLivro(Livro item)
+        {
+            var livro = contextDB.Livros.FirstOrDefault(x => x.Id == item.Id); 
+            
+            if (livro == null)
+            {
+                return false;
+            }
+            else
+            {
+                livro.DataAlteracao = DateTime.Now;
+            }
+            contextDB.SaveChanges();
+            return true;
+        }
+        /// <summary>
+        /// Este método inseri um novo livro no sistema
+        /// </summary>
+        /// <param name="item">Recebe como parâmetro um objeto</param>
+        /// <returns>Retorna verdadeiro caso os campos sejam aceitáveis</returns>
+        public bool InserirLivro(Livro item)
+        {
+            if (string.IsNullOrWhiteSpace(item.Nome))
+            {
+                return false;
+            }
+            contextDB.Livros.Add(item);
+            contextDB.SaveChanges();
+            return true;
+        }
+        /// <summary>
+        /// Este método desativa um livro do sistema
+        /// </summary>
+        /// <param name="id">Ele recebe como parâmetro um int</param>
+        /// <returns>E retorna um true com base no valor inserido</returns>
+        public bool RemoverLIvro(int id)
+        {
+            var livro = contextDB.Livros.FirstOrDefault(x => x.Id == id);
 
-        }
-        /// <summary>
-        /// Metodo que adiciona o livro em nossa lista já "instanciada" criada dentro do 
-        /// construtor
-        /// </summary>
-        /// <param name="parametroLivro">Informações do livro que vamos adicionar</param>
-        public void AdicionarLivro(Livro parametroLivro)
-        {
-            //Adicionamos o livro em nossa lista.
-            parametroLivro.Id = contextDB.IdContadorLivros++;
-            contextDB.ListaDeLivros.Add(parametroLivro);
-        }
-        /// <summary>
-        /// Metodo que retorna a lista de livros
-        /// </summary>
-        /// <returns>Lista de livros</returns>
-        public List<Livro> RetornaListaDeLivros()
-        {
-            return contextDB.ListaDeLivros.Where(x => x.Ativo).ToList<Livro>();
-        }
-        /// <summary>
-        /// Metodo para desativar o registro de livro pelo Id
-        /// </summary>
-        /// <param name="identificadoID">Id do livro que vamos desativar</param>
-        public void RemoverLivroPorId(int identificadoID)
-        {
-            //FirstOrDefault retorna null em caso de não encontrar um registro
-            var livro = contextDB.ListaDeLivros.FirstOrDefault(x => x.Id == identificadoID);
-            //Tratamento do valor quando ele não encontrar um livro com o id
-            if (livro != null)
+            if (livro == null)
+            {
+                return false;
+            }
+            else
+            {
                 livro.Ativo = false;
+            }
+            contextDB.SaveChanges();
+            return true;
         }
     }
 }
