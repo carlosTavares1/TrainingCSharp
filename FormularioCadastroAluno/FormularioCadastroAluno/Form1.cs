@@ -65,5 +65,10 @@ namespace FormularioCadastroAluno
         {
             MessageBox.Show($"O nome é {lista.Nome}\r\nO endereço é {dado.Endereco}\r\nA idade é {dado.idade}");
         }
+
+        private void RadioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
