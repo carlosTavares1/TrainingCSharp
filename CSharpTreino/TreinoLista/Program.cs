@@ -10,17 +10,15 @@ namespace TreinoLista
     {
         static void Main(string[] args)
         {
-            SortedSet<string> conjuntoOrdenado = new SortedSet<string>();
+            List<string> nome = new List<string>();
 
-            conjuntoOrdenado.Add("Marcos");
-            conjuntoOrdenado.Add("Gabriel");
-            conjuntoOrdenado.Add("Carlos");
-            conjuntoOrdenado.Add("Davi");
+            nome.Add("carlos");
+            nome.Add("caio");
+            nome.Add("jose");
+            nome.Add("marcos");
+            nome.Add("carlos");
 
-            foreach (var item in conjuntoOrdenado)
-            {
-                Console.WriteLine(item);
-            }
+            (from c in nome where c != "carlos" select c).ToList<string>().ForEach(x => Console.WriteLine(x));
 
             Console.ReadKey();
         }
